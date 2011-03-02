@@ -7,6 +7,8 @@ require root + '/resources/homebrew'
 require root + '/providers/homebrew'
 require 'etc'
 
+current_user = node[:current_user].to_sym
+
 template "#{ENV['HOME']}/.gitconfig" do
   mode   0700
   owner  ENV['USER']
@@ -19,6 +21,6 @@ template "#{ENV['HOME']}/.gitconfig" do
     :github_user  => ENV['GITHUB_USER'],
     :github_token => ENV['GITHUB_TOKEN'],
     :editor       => ENV['EDITOR']   || fail("No editor set for your ~/.gitconfig"),
-    :fullname     => ENV['FULLNAME'] || fail("No Full Name set for your ~/.gitconfig")
+    :fullname     => ENV['FULLNAME'] || node[:etc][:passwd][current_user][:gecos] || fail("No Full Name set for your ~/.gitconfig")
   })
 end
