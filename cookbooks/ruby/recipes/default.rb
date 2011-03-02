@@ -3,7 +3,7 @@
 # Recipe:: default
 #
 
-DEFAULT_RUBY_VERSION = "1.8.7-p248"
+DEFAULT_RUBY_VERSION = "1.8.7-p330"
 
 script "installing rvm to ~/Developer" do
   interpreter "bash"
