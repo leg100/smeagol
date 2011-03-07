@@ -1,0 +1,1 @@
+default[:gemrepos] = [ "http://rubygems.org" ]

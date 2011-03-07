@@ -5,14 +5,12 @@
 
 DEFAULT_RUBY_VERSION = "1.8.7-p330"
 
-script "installing rvm to ~/Developer" do
+script "installing rvm" do
   interpreter "bash"
   code <<-EOS
     source ~/.cinderella.profile
-    if [[ ! -d ~/Developer/.rvm ]]; then
-      git clone git://github.com/atmos/rvm.git rvm
-      cd rvm
-      bin/rvm-install --prefix #{ENV['HOME']}/Developer/. >> ~/.cinderella/ruby.log 2>&1
+    if [[ ! -d ~/.rvm ]]; then
+      bash < <( curl http://rvm.beginrescueend.com/releases/rvm-install-head )
     fi
   EOS
 end
@@ -47,7 +45,7 @@ script "ensuring a default ruby is set" do
   EOS
 end
 
-template "#{ENV['HOME']}/Developer/.rvm/gemsets/default.gems" do
+template "#{ENV['HOME']}/.rvm/gemsets/default.gems" do
   source "default.gems.erb"
 end
 
@@ -55,7 +53,7 @@ script "ensuring default rubygems are installed" do
   interpreter "bash"
   code <<-EOS
     source ~/.cinderella.profile
-    rvm gemset load ~/Developer/.rvm/gemsets/default.gems >> ~/.cinderella/ruby.log 2>&1
+    rvm gemset load ~/.rvm/gemsets/default.gems >> ~/.cinderella/ruby.log 2>&1
   EOS
 end
 

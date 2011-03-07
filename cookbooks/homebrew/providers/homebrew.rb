@@ -5,8 +5,8 @@ class Chef
   class Provider
     class Package
       class Homebrew < ::Chef::Provider::Package
-        PREFIX   = "#{ENV['HOME']}/Developer"
-        HOMEBREW = "#{PREFIX}/bin/brew"
+#        PREFIX   = "#{ENV['HOME']}/Developer"
+        HOMEBREW = "/usr/local/bin/brew"
 
         def latest_version_for(name)
           %x{#{HOMEBREW} info #{name}| head -n1 | awk '{print $2}'}.chomp

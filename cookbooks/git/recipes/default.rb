@@ -17,9 +17,9 @@ template "#{ENV['HOME']}/.gitconfig" do
   variables({
     :home         => ENV['HOME'],
     :user         => ENV['USER'],
-    :email        => ENV['EMAIL'],
-    :github_user  => ENV['GITHUB_USER'],
-    :github_token => ENV['GITHUB_TOKEN'],
+    :email        => ENV['EMAIL'] || node[:email],
+    :github_user  => ENV['GITHUB_USER'] || node[:github_user],
+    :github_token => ENV['GITHUB_TOKEN'] || node[:github_token],
     :editor       => ENV['EDITOR']   || fail("No editor set for your ~/.gitconfig"),
     :fullname     => ENV['FULLNAME'] || node[:etc][:passwd][current_user][:gecos] || fail("No Full Name set for your ~/.gitconfig")
   })
