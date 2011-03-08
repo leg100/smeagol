@@ -5,7 +5,7 @@ class Chef
   class Provider
     class Package
       class Homebrew < ::Chef::Provider::Package
-#        PREFIX   = "#{ENV['HOME']}/Developer"
+        PREFIX   = "/usr/local"
         HOMEBREW = "/usr/local/bin/brew"
 
         def latest_version_for(name)
